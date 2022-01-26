@@ -7,13 +7,17 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  width: 100vw;
+  min-width: 100vw;
+  max-width: 100%;
   background-image: url("/assets/home/background-home-desktop.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 
   @media (max-width: 820px) {
     background-image: url("/assets/home/background-home-tablet.jpg");
+  }
+  @media (max-width: 520px) {
+    background-image: url("/assets/home/background-home-mobile.jpg");
   }
 `;
 
@@ -32,6 +36,9 @@ const Content = styled.section`
     align-items: center;
     height: 100vh;
   }
+  @media (max-width: 520px) {
+    padding: 2em;
+  }
 `;
 
 const Text = styled.div`
@@ -42,18 +49,28 @@ const Text = styled.div`
   @media (max-width: 820px) {
     align-items: center;
   }
+  @media (max-width: 520px) {
+    width: auto;
+  }
   h5 {
     font-family: "Barlow Condensed", sans-serif;
     font-weight: 400;
     font-size: 28px;
     letter-spacing: 4.75px;
     color: ${({ theme }) => theme.colors.primary};
+
+    @media (max-width: 520px) {
+      font-size: 16px;
+    }
   }
   h1 {
     font-weight: 400;
     font-size: 150px;
     margin: 2rem 0;
     color: ${({ theme }) => theme.colors.white};
+    @media (max-width: 520px) {
+      font-size: 80px;
+    }
   }
   p {
     font-family: "Barlow", sans-serif;
@@ -63,6 +80,9 @@ const Text = styled.div`
     @media (max-width: 820px) {
       text-align: center;
       line-height: 28px;
+    }
+    @media (max-width: 520px) {
+      font-size: 15px;
     }
   }
 `;
@@ -80,6 +100,10 @@ const Button = styled.div`
     @media (max-width: 820px) {
       width: 242px;
       height: 242px;
+    }
+    @media (max-width: 520px) {
+      width: 150px;
+      height: 150px;
     }
   }
   a {

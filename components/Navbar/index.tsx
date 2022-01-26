@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useState } from "react";
 
 interface Props {
   currentPage: string;
@@ -9,7 +10,7 @@ interface ActiveProps {
   active: boolean;
 }
 
-const NavMenu = styled.nav`
+const NavMenu = styled.nav<ActiveProps>`
   position: relative;
   width: 100%;
   display: flex;
@@ -49,6 +50,14 @@ const NavMenu = styled.nav`
       position: static;
       width: auto;
     }
+    @media (max-width: 520px) {
+      position: fixed;
+      display: ${(props) => (props.active ? "" : "none")};
+      width: 65%;
+      top: 0;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
   span {
     font-weight: bold;
@@ -56,6 +65,9 @@ const NavMenu = styled.nav`
 
     @media (max-width: 820px) {
       display: none;
+    }
+    @media (max-width: 520px) {
+      display: inline-block;
     }
   }
 `;
@@ -74,6 +86,10 @@ const NavItem = styled.li<ActiveProps>`
   @media (max-width: 820px) {
     font-size: 14px;
   }
+  @media (max-width: 520px) {
+    font-size: 16px;
+    border-bottom: none;
+  }
 
   border-bottom: ${(props) =>
     props.active ? "3px solid white" : "3px solid transparent"};
@@ -83,9 +99,35 @@ const NavItem = styled.li<ActiveProps>`
   }
 `;
 
+const Hamburger = styled.button`
+  background: none;
+  border: none;
+  margin-right: 24px;
+
+  @media (min-width: 520px) {
+    display: none;
+  }
+`;
+
+const CloseButton = styled.button<ActiveProps>`
+  display: ${(props) => (props.active ? "" : "none")};
+  background: none;
+  border: none;
+  margin: 24px 0;
+  margin-right: 24px;
+  width: 24px;
+  align-self: flex-end;
+`;
+
 export default function Navbar({ currentPage }: Props) {
+  const [menuStatus, setMenuStatus] = useState(false);
+
+  function handleMenu() {
+    setMenuStatus(!menuStatus);
+  }
+
   return (
-    <NavMenu>
+    <NavMenu active={menuStatus}>
       <Image
         src="/assets/shared/logo.svg"
         width="48px"
@@ -93,7 +135,23 @@ export default function Navbar({ currentPage }: Props) {
         layout="fixed"
       />
       <div></div>
+      <Hamburger onClick={handleMenu}>
+        <Image
+          src="/assets/shared/icon-hamburger.svg"
+          layout="fixed"
+          width="24px"
+          height="24px"
+        />
+      </Hamburger>
       <ul>
+        <CloseButton active={menuStatus} onClick={handleMenu}>
+          <Image
+            src="/assets/shared/icon-close.svg"
+            layout="fixed"
+            width="24px"
+            height="24px"
+          />
+        </CloseButton>
         <NavItem active={currentPage == "Home"}>
           <span>00</span>Home
         </NavItem>
