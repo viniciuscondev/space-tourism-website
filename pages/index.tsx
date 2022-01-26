@@ -118,6 +118,10 @@ const Button = styled.div`
     font-size: 32px;
     color: #0b0d17;
     letter-spacing: 2px;
+
+    @media (max-width: 520px) {
+      font-size: 20px;
+    }
   }
 `;
 
