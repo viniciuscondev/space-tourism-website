@@ -6,9 +6,8 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
-  min-width: 100vw;
-  max-width: 100%;
+  min-height: 100vh;
+  max-width: 100vw;
   background-image: url("/assets/home/background-home-desktop.jpg");
   background-repeat: no-repeat;
   background-size: cover;

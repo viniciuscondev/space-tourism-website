@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 interface Props {
   currentPage: string;
@@ -152,18 +153,26 @@ export default function Navbar({ currentPage }: Props) {
             height="24px"
           />
         </CloseButton>
-        <NavItem active={currentPage == "Home"}>
-          <span>00</span>Home
-        </NavItem>
-        <NavItem active={currentPage == "Destination"}>
-          <span>01</span>Destination
-        </NavItem>
-        <NavItem active={currentPage == "Crew"}>
-          <span>02</span>Crew
-        </NavItem>
-        <NavItem active={currentPage == "Technology"}>
-          <span>03</span>Technology
-        </NavItem>
+        <Link href="/">
+          <NavItem active={currentPage == "Home"}>
+            <span>00</span>Home
+          </NavItem>
+        </Link>
+        <Link href="/destination">
+          <NavItem active={currentPage == "Destination"}>
+            <span>01</span>Destination
+          </NavItem>
+        </Link>
+        <Link href="/crew">
+          <NavItem active={currentPage == "Crew"}>
+            <span>02</span>Crew
+          </NavItem>
+        </Link>
+        <Link href="/technology">
+          <NavItem active={currentPage == "Technology"}>
+            <span>03</span>Technology
+          </NavItem>
+        </Link>
       </ul>
     </NavMenu>
   );
